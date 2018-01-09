@@ -14,12 +14,12 @@ public:
 		return cout;
 	}
 
-	//friend std::istream& operator>>(std::istream & cin, Rational<Tint> R)
-	//{
-	//	
-
-	//	return cin;
-	//}
+	friend std::istream& operator>>(std::istream& lhs, Rational<Tint>& rhs)
+	{
+		lhs >> rhs.nom;
+		lhs >> rhs.denom;
+		return lhs;
+	}
 
 	Rational() : nom(0), denom(1) {}
 	Rational(Tint P) : nom(P), denom(1) {}
@@ -30,7 +30,7 @@ public:
 	}
 
 	template <class T>
-	Rational(Rational<T> rhs)
+	Rational(const Rational<T>& rhs)
 	{
 		nom = rhs.nom;
 		denom = rhs.denom;
@@ -38,66 +38,49 @@ public:
 
 	~Rational() = default;
 
-
-
 	//Might want to allocate memory here?
 	template <class T>
-	Rational& operator+=(const Rational<T>& rhs) const
+	Rational<Tint>& operator+=(const Rational<T>& rhs)
 	{
-		Rational temp = Rational((nom*rhs.denom + denom*rhs.nom), denom*rhs.denom);
-		Reduce(temp.nom, temp.denom);
-		return temp;
+		*this = Rational<Tint>((nom*rhs.denom + denom*rhs.nom), denom*rhs.denom);
+		Reduce(nom, denom);
+		return *this;
 	}
 
-	//template <class T>
-	//Rational& operator+=(const Tint& rhs) const
-	//{
-	//	return (this += Ratioanl(rhs));
-	//}
-
-	//Rational operator+=(const Tint& rhs) const
-	//{
-	//	Rational temp = Rational(rhs);
-	//	return (this += temp);
-	//}
+	template <class T>
+	Rational<Tint>& operator+=(const T& rhs) 
+	{
+		Rational<T> temp = Rational<T>(rhs);
+		return (*this += temp);
+	}
 
 	template<class T>
-	Rational operator+(const Rational<T>& rhs) const { return (this += rhs); }
+	Rational<Tint> operator+(Rational<T>& rhs) const { return (Rational(nom, denom) += rhs); }
 
-	//Rational operator+(const Tint& rhs) const
-	//{
-	//	Rational temp = Rational(rhs);
-	//	//operator+= reduces this so don't have to worry about it
-	//	return (this += temp);
-	//}
+	template<class T>
+	Rational<Tint> operator+(T& rhs) const { return (Rational(nom, denom) += rhs); }
 
 	template<class T>
 	bool operator==(const Rational<T> rhs) const //No changes so method is constant
 	{
-		return (nom == rhs.nom && denom == rhs.denom);
+		auto t1 = nom / denom;
+		auto t2 = rhs.nom / rhs.denom;
+		return t1 == t2;
 	}
-
-	//bool operator==(const Tint& rhs) const
-	//{
-	//	if ((nom / denom) == rhs)
-	//		return true;
-	//	else
-	//		return false;
-	//}
 
 	operator Tint() const
 	{
 		return nom / denom;
 	}
 
-	Rational& operator++()
+	Rational<Tint>& operator++()
 	{
 		nom += denom;
 		Reduce(nom, denom);
 		return *this;
 	}
 
-	Rational operator++(int rhs)
+	Rational<Tint> operator++(int rhs)
 	{
 		Tint old = nom;
 		nom += denom;
@@ -106,10 +89,6 @@ public:
 		return temp;
 	}
 
-
-
-	Rational& operator-() { nom = -nom; }
-
-
+	Rational<Tint>& operator-() { nom = -1 * nom; return *this; }
 };
 

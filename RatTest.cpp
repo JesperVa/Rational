@@ -90,7 +90,7 @@ void TestFörGodkänt() {
 
     // Overloading av << och >> (ut och in matning)
     std::cout << "Utmatning>" << rs3 << "< skriv in texten mellan > och < + retur\n";
-    //std::cin >> rs2;
+    std::cin >> rs2;
     assert(rs3 == rs2);
 }
 
@@ -108,3 +108,14 @@ void TestFörVälGodkänt() {
 
 #endif
 
+
+int main()
+{
+	TestFörGodkänt();
+
+	std::cout << "Klar med godkänt";
+
+	int temp;
+	std::cin >> temp;
+	return 0;
+}

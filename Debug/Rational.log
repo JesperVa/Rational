@@ -1,8 +1,16 @@
 ﻿  RatTest.cpp
-e:\avancerad c++\rational\rational\rattest.cpp(71): error C2784: 'Rational<short> &Rational<short>::operator +=(const Rational<T> &) const': could not deduce template argument for 'const Rational<T> &' from 'int'
-  e:\avancerad c++\rational\rational\rational.h(45): note: see declaration of 'Rational<short>::operator +='
-e:\avancerad c++\rational\rational\rattest.cpp(71): error C2676: binary '+=': 'Rational<short>' does not define this operator or a conversion to a type acceptable to the predefined operator
+e:\avancerad c++\rational\rational\rational.h(35): warning C4244: '=': conversion from 'const __int64' to 'short', possible loss of data
+  e:\avancerad c++\rational\rational\rattest.cpp(67): note: see reference to function template instantiation 'Rational<short>::Rational<__int64>(const Rational<__int64> &)' being compiled
+  e:\avancerad c++\rational\rational\rattest.cpp(67): note: see reference to function template instantiation 'Rational<short>::Rational<__int64>(const Rational<__int64> &)' being compiled
+e:\avancerad c++\rational\rational\rational.h(36): warning C4244: '=': conversion from 'const __int64' to 'short', possible loss of data
+e:\avancerad c++\rational\rational\rational.h(50): warning C4244: 'argument': conversion from '__int64' to 'short', possible loss of data
+  e:\avancerad c++\rational\rational\rational.h(63): note: see reference to function template instantiation 'Rational<short> &Rational<short>::operator +=<__int64>(const Rational<__int64> &)' being compiled
+  e:\avancerad c++\rational\rational\rational.h(63): note: see reference to function template instantiation 'Rational<short> &Rational<short>::operator +=<__int64>(const Rational<__int64> &)' being compiled
+  e:\avancerad c++\rational\rational\rattest.cpp(75): note: see reference to function template instantiation 'Rational<short> Rational<short>::operator +<__int64>(Rational<__int64> &) const' being compiled
+  e:\avancerad c++\rational\rational\rattest.cpp(75): note: see reference to function template instantiation 'Rational<short> Rational<short>::operator +<__int64>(Rational<__int64> &) const' being compiled
   Generating Code...
   Compiling...
   Rational.cpp
   Generating Code...
+  Rational.vcxproj -> E:\Avancerad C++\Rational\Debug\Rational.exe
+  Rational.vcxproj -> E:\Avancerad C++\Rational\Debug\Rational.pdb (Partial PDB)
